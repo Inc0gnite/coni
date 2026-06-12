@@ -1,5 +1,5 @@
 /* ============================================================
-   ConyBeautiful — Lógica de la landing
+   ConiBeautyStudio — Lógica de la landing
    Archivo: js/main.js
 
    Secciones:
@@ -16,14 +16,10 @@
 
 /* ==================== 1. CONFIG (REEMPLAZAR) ==================== */
 const CONFIG = {
-  whatsapp:  '56950306560',   // REEMPLAZAR: número real, solo dígitos con código país
-  instagram: 'coni_beautystudio'  // REEMPLAZAR: usuario real de Instagram
+  whatsapp:  '56950306560',
+  instagram: 'coni_beautystudio'
 };
 
-/* Tarifa de DECORACIÓN por uña según complejidad.
-   Rango confirmado en el documento maestro: $500–$1.000 por uña.
-   El valor BASE por técnica lo confirma Cony y NO se calcula aquí. */
-const DECO = { baja: 500, media: 750, alta: 1000 };
 /* ================================================================ */
 
 
@@ -35,65 +31,64 @@ igEl.textContent = '@' + CONFIG.instagram;
 igEl.href = 'https://www.instagram.com/coni_beautystudio/' + CONFIG.instagram;
 
 
-/* ==================== 3. Estimador de uñas ==================== */
-let complejidad = 'media'; // estado interno: 'baja' | 'media' | 'alta'
-
-const nails    = document.getElementById('nails');
-const nailsOut = document.getElementById('nailsOut');
-const estimate = document.getElementById('estimate');
-const tecnica  = document.getElementById('tecnica');
-const tecOut   = document.getElementById('tecOut');
-
-/** Formatea un número como precio en pesos chilenos (ej: 1500 → "$1.500") */
-const fmt = n => '$' + n.toLocaleString('es-CL');
-
-/** Pinta el botón de complejidad activo con fondo dorado */
-function paintComplex() {
-  document.querySelectorAll('.cbtn').forEach(b => {
-    const on = b.dataset.c === complejidad;
-    b.style.background  = on ? '#C9A24B' : 'transparent';
-    b.style.color       = on ? '#1B1917' : '#F4EFE7';
-    b.style.borderColor = on ? '#C9A24B' : '#2A2724';
-  });
-}
-
-/** Recalcula y muestra la estimación de decoración */
-function calc() {
-  const n = parseInt(nails.value, 10);
-  nailsOut.textContent = n;
-  tecOut.textContent   = tecnica.value;
-  estimate.textContent = fmt(n * DECO[complejidad]);
-}
-
-/* Listeners del estimador */
-document.querySelectorAll('.cbtn').forEach(b => {
-  b.addEventListener('click', () => { complejidad = b.dataset.c; paintComplex(); calc(); });
-});
-nails.addEventListener('input', calc);
-tecnica.addEventListener('change', calc);
-
-/* Estado inicial */
-paintComplex();
-calc();
 
 
 /* ==================== 4. Formulario → WhatsApp ==================== */
 const msgEl = document.getElementById('formMsg');
 
+/* Fecha: mínimo hoy, máximo 2 meses desde hoy */
+(function () {
+  const hoy = new Date();
+  const max = new Date(hoy);
+  max.setMonth(max.getMonth() + 2);
+  const f = document.getElementById('f_fecha');
+  f.min = hoy.toISOString().split('T')[0];
+  f.max = max.toISOString().split('T')[0];
+})();
+
+
+/* Permite desmarcar un radio al hacer clic sobre él si ya estaba seleccionado */
+document.querySelectorAll('.f_svc').forEach(radio => {
+  radio.addEventListener('mousedown', function () {
+    this._wasChecked = this.checked;
+  });
+  radio.addEventListener('click', function () {
+    if (this._wasChecked) {
+      this.checked = false;
+      this._wasChecked = false;
+    }
+  });
+});
+
+
+/* Bloquea letras en el campo teléfono, permite solo dígitos, +, espacios y guiones */
+document.getElementById('f_tel').addEventListener('input', function () {
+  this.value = this.value.replace(/[^\d+\s\-]/g, '');
+});
+
 document.getElementById('enviar').addEventListener('click', () => {
   const v = id => document.getElementById(id).value.trim();
 
-  const nombre   = v('f_nombre');
-  const tel      = v('f_tel');
-  const servicio = document.getElementById('f_servicio').value;
-  const fecha    = v('f_fecha');
-  const horario  = v('f_horario');
-  const pol      = document.getElementById('f_pol').checked;
+  const nombre  = v('f_nombre');
+  const tel     = v('f_tel');
+  const fecha   = v('f_fecha');
+  const horario = v('f_horario');
+  const pol     = document.getElementById('f_pol').checked;
+
+  /* Recoger todos los servicios marcados */
+  const checkedSvcs = [...document.querySelectorAll('.f_svc:checked')].map(cb => cb.value);
 
   /* Validación: campos obligatorios */
-  if (!nombre || !tel || !servicio || !fecha || !horario) {
+  if (!nombre || !tel || checkedSvcs.length === 0 || !fecha || !horario) {
     msgEl.style.color = '#E3C77A';
-    msgEl.textContent = 'Completa los campos marcados con *.';
+    msgEl.textContent = 'Completa los campos marcados con * y elige al menos un servicio.';
+    return;
+  }
+
+  /* Validación: teléfono solo dígitos (con opcional + y espacios/guiones) */
+  if (!/^\+?[\d\s\-]{7,15}$/.test(tel)) {
+    msgEl.style.color = '#E3C77A';
+    msgEl.textContent = 'El teléfono debe contener solo números (ej: +56 9 1234 5678).';
     return;
   }
 
@@ -104,23 +99,23 @@ document.getElementById('enviar').addEventListener('click', () => {
     return;
   }
 
-  const correo = v('f_correo') || '—';
-  const obs    = v('f_obs')    || '—';
+  const correo   = v('f_correo') || '—';
+  const obs      = v('f_obs')    || '—';
+  const servicios = checkedSvcs.join('\n          · ');
 
-  /* Texto del mensaje estructurado (formato definido en el Documento Maestro) */
-  const texto =
-`📋 NUEVA SOLICITUD CONYBEAUTIFUL
+  /* Texto del mensaje estructurado */
+  const lineas = [
+    '*ConiBeautyStudio — Nueva reserva*',
+    '',
+    `*Nombre:* ${nombre}`,
+    `*Telefono:* ${tel}`,
+  ];
+  if (correo !== '—') lineas.push(`*Correo:* ${correo}`);
+  lineas.push('', `*Servicio(s):*\n   · ${servicios}`);
+  lineas.push('', `*Fecha deseada:* ${fecha}`, `*Horario preferido:* ${horario}`);
+  if (obs !== '—') lineas.push('', `*Observaciones:* ${obs}`);
 
-Nombre: ${nombre}
-Servicio: ${servicio}
-Teléfono: ${tel}
-Correo: ${correo}
-Fecha Deseada: ${fecha}
-Horario Preferido: ${horario}
-Observaciones: ${obs}
-Políticas Aceptadas: Sí
-
-Estado: Pendiente de confirmación.`;
+  const texto = lineas.join('\n');
 
   const url = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(texto);
   msgEl.style.color = '#C9A24B';
@@ -129,7 +124,75 @@ Estado: Pendiente de confirmación.`;
 });
 
 
-/* ==================== 5. Destellos flotantes ==================== */
+/* ==================== 5. Lightbox ==================== */
+(function () {
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lb-img');
+  const lbClose = document.getElementById('lb-close');
+  const lbPrev  = document.getElementById('lb-prev');
+  const lbNext  = document.getElementById('lb-next');
+
+  let group   = [];  // fuentes del grupo activo
+  let current = 0;
+
+  function open(sources, idx) {
+    group   = sources;
+    current = ((idx % group.length) + group.length) % group.length;
+    lbImg.classList.remove('fade');
+    lbImg.src = group[current];
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    const solo = group.length === 1;
+    lbPrev.style.display = solo ? 'none' : '';
+    lbNext.style.display = solo ? 'none' : '';
+  }
+
+  function navigate(dir) {
+    lbImg.classList.add('fade');
+    setTimeout(() => {
+      current = ((current + dir + group.length) % group.length);
+      lbImg.src = group[current];
+      lbImg.classList.remove('fade');
+    }, 220);
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* --- Tira de uñas (solo el set original, sin duplicados) --- */
+  const unaSources = [
+    'Images/Unas_1.jpg', 'Images/Unas_2.jpg', 'Images/Unas3.jpg',
+    'Images/Unas_4.jpg', 'Images/Unas_5.jpg', 'Images/Unas_6.jpg',
+    'Images/Unas_7.jpg',
+  ];
+  document.querySelectorAll('.strip-img').forEach(img => {
+    img.addEventListener('click', () => {
+      const idx = unaSources.findIndex(s => img.src.includes(s.replace('Images/', '')));
+      open(unaSources, idx >= 0 ? idx : 0);
+    });
+  });
+
+  /* --- Cards de pestañas (data-zoom, cada una abre solo su foto) --- */
+  document.querySelectorAll('[data-zoom]').forEach(img => {
+    img.addEventListener('click', () => open([img.src], 0));
+  });
+
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', () => navigate(-1));
+  lbNext.addEventListener('click', () => navigate(1));
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
+})();
+
+
+/* ==================== 6. Destellos flotantes ==================== */
 /* Genera 22 partículas doradas que flotan en el fondo.
    Se omite si el usuario prefiere menos movimiento (accesibilidad). */
 const fx = document.querySelector('.bg-fx');

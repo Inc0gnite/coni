@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   ============================================================
-  ConyBeautiful — Landing (KENSETSU)
+  ConiBeautyStudio — Landing (KENSETSU)
   Estructura del proyecto:
     index.html              -> esta página (estructura)
     css/styles.css          -> estilos y animaciones
@@ -20,9 +20,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ConyBeautiful — Pestañas y Uñas</title>
-  <meta name="description" content="ConyBeautiful: extensiones de pestañas y uñas con diseño personalizado. Revisa servicios, precios y reserva tu hora por WhatsApp." />
-  <meta property="og:title" content="ConyBeautiful — Pestañas y Uñas" />
+  <title>ConiBeautyStudio — Pestañas y Uñas</title>
+  <meta name="description" content="ConiBeautyStudio: extensiones de pestañas y uñas con diseño personalizado. Revisa servicios, precios y reserva tu hora por WhatsApp." />
+  <meta property="og:title" content="ConiBeautyStudio — Pestañas y Uñas" />
   <meta property="og:description" content="Extensiones de pestañas y uñas con diseño personalizado. Reserva por WhatsApp." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="og-image.jpg" />
@@ -53,7 +53,7 @@
   <!-- NAV -->
   <header class="sticky top-0 z-40 backdrop-blur bg-ink/85 border-b hairline">
     <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
-      <a href="#inicio" class="font-display text-xl tracking-wide text-goldlt">ConyBeautiful</a>
+      <a href="#inicio" class="font-display text-xl tracking-wide text-goldlt">ConiBeautyStudio</a>
       <a href="#reservar" class="text-sm font-medium text-ink bg-gold hover:bg-goldlt transition-colors px-4 py-2 rounded-full">Reservar</a>
     </div>
   </header>
@@ -87,10 +87,10 @@
 
     <div class="grid sm:grid-cols-3 gap-5 mt-10">
       <article class="reveal bg-char border hairline rounded-2xl overflow-hidden flex flex-col">
-        <div class="photo-slot aspect-[4/3] flex items-center justify-center text-warm/60 text-xs">[Foto de tu trabajo]</div>
+        <img src="Images/Efecto_Rimel.png" alt="Efecto Rímel" class="aspect-[4/3] w-full object-contain bg-ink p-2 cursor-zoom-in" data-zoom />
         <div class="p-5 flex flex-col gap-3 grow">
           <h3 class="font-display text-xl text-cream">Efecto Rímel</h3>
-          <p class="text-warm text-sm grow">Natural y definido, como un rímel perfecto. <!-- REEMPLAZAR descripción --></p>
+          <p class="text-warm text-sm grow">Natural y definido, como un rímel perfecto.</p>
           <div class="flex items-center justify-between pt-2 border-t hairline">
             <span class="text-goldlt font-medium text-lg">$28.000</span>
             <a href="#reservar" class="text-xs text-gold hover:text-goldlt">Reservar →</a>
@@ -99,10 +99,10 @@
       </article>
 
       <article class="reveal bg-char border hairline rounded-2xl overflow-hidden flex flex-col">
-        <div class="photo-slot aspect-[4/3] flex items-center justify-center text-warm/60 text-xs">[Foto de tu trabajo]</div>
+        <img src="Images/Volumen_Light.png" alt="Volumen Light" class="aspect-[4/3] w-full object-contain bg-ink p-2 cursor-zoom-in" data-zoom />
         <div class="p-5 flex flex-col gap-3 grow">
           <h3 class="font-display text-xl text-cream">Volumen Light</h3>
-          <p class="text-warm text-sm grow">Más densidad, manteniendo la ligereza. <!-- REEMPLAZAR descripción --></p>
+          <p class="text-warm text-sm grow">Más densidad, manteniendo la ligereza.</p>
           <div class="flex items-center justify-between pt-2 border-t hairline">
             <span class="text-goldlt font-medium text-lg">$32.000</span>
             <a href="#reservar" class="text-xs text-gold hover:text-goldlt">Reservar →</a>
@@ -111,10 +111,10 @@
       </article>
 
       <article class="reveal bg-char border hairline rounded-2xl overflow-hidden flex flex-col">
-        <div class="photo-slot aspect-[4/3] flex items-center justify-center text-warm/60 text-xs">[Foto de tu trabajo]</div>
+        <img src="Images/Volumen_Tecnológico.png" alt="Volumen Tecnológico" class="aspect-[4/3] w-full object-contain bg-ink p-2 cursor-zoom-in" data-zoom />
         <div class="p-5 flex flex-col gap-3 grow">
           <h3 class="font-display text-xl text-cream">Volumen Tecnológico</h3>
-          <p class="text-warm text-sm grow">Máximo volumen con técnica avanzada. <!-- REEMPLAZAR descripción --></p>
+          <p class="text-warm text-sm grow">Máximo volumen con técnica avanzada.</p>
           <div class="flex items-center justify-between pt-2 border-t hairline">
             <span class="text-goldlt font-medium text-lg">$34.000</span>
             <a href="#reservar" class="text-xs text-gold hover:text-goldlt">Reservar →</a>
@@ -142,49 +142,28 @@
       <span class="bg-char border hairline rounded-full px-4 py-2 text-sm text-cream">Acrílicas</span>
     </div>
 
-    <!-- Estimador -->
-    <div class="estimator reveal mt-10 grid md:grid-cols-2 gap-6 bg-char border hairline rounded-2xl p-6 md:p-8">
-      <div class="space-y-5">
-        <h3 class="font-display text-2xl text-cream">Estima tu diseño</h3>
-
-        <label class="block">
-          <span class="text-sm text-warm">Técnica</span>
-          <select id="tecnica" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream">
-            <option>Permanente</option>
-            <option>Kapping</option>
-            <option>Soft Gel</option>
-            <option>Polygel</option>
-            <option>Acrílicas</option>
-          </select>
-        </label>
-
-        <label class="block">
-          <span class="text-sm text-warm">Uñas con diseño / decoración: <span id="nailsOut" class="text-goldlt font-medium">2</span></span>
-          <input id="nails" type="range" min="0" max="10" step="1" value="2" class="mt-2 w-full accent-gold" />
-        </label>
-
-        <div>
-          <span class="text-sm text-warm">Complejidad del diseño</span>
-          <div class="mt-2 grid grid-cols-3 gap-2" id="complex">
-            <button data-c="baja"  class="cbtn border hairline rounded-lg py-2 text-sm text-cream">Baja</button>
-            <button data-c="media" class="cbtn border hairline rounded-lg py-2 text-sm text-cream">Media</button>
-            <button data-c="alta"  class="cbtn border hairline rounded-lg py-2 text-sm text-cream">Alta</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-col justify-center bg-ink rounded-xl p-6 border hairline">
-        <p class="text-xs text-warm uppercase tracking-widest">Estimación de decoración</p>
-        <p class="mt-2 text-3xl font-display text-goldlt"><span id="estimate">$1.500</span></p>
-        <p class="mt-1 text-sm text-warm">para <span id="tecOut">Permanente</span></p>
-        <p class="mt-4 text-xs text-warm leading-relaxed border-t hairline pt-4">
-          Valor referencial de la decoración ($500 a $1.000 por uña, según complejidad),
-          <span class="text-cream">por sobre el valor base de la técnica</span>. El precio final
-          y la duración se confirman con tu foto de referencia por WhatsApp.
-        </p>
-        <a href="#reservar" class="mt-5 text-center text-ink bg-gold hover:bg-goldlt transition-colors font-medium px-5 py-2.5 rounded-full">Cotizar con mi foto</a>
+    <!-- Tira continua de uñas -->
+    <div class="reveal mt-8 strip-wrap">
+      <div class="strip-track">
+        <!-- set original -->
+        <img src="Images/Unas_1.jpg" alt="Diseño de uñas" class="strip-img" />
+        <img src="Images/Unas_2.jpg" alt="Diseño de uñas" class="strip-img" />
+        <img src="Images/Unas3.jpg"  alt="Diseño de uñas" class="strip-img" />
+        <img src="Images/Unas_4.jpg" alt="Diseño de uñas" class="strip-img" />
+        <img src="Images/Unas_5.jpg" alt="Diseño de uñas" class="strip-img" />
+        <img src="Images/Unas_6.jpg" alt="Diseño de uñas" class="strip-img" />
+        <img src="Images/Unas_7.jpg" alt="Diseño de uñas" class="strip-img" />
+        <!-- duplicado para bucle sin corte -->
+        <img src="Images/Unas_1.jpg" alt="" aria-hidden="true" class="strip-img" />
+        <img src="Images/Unas_2.jpg" alt="" aria-hidden="true" class="strip-img" />
+        <img src="Images/Unas3.jpg"  alt="" aria-hidden="true" class="strip-img" />
+        <img src="Images/Unas_4.jpg" alt="" aria-hidden="true" class="strip-img" />
+        <img src="Images/Unas_5.jpg" alt="" aria-hidden="true" class="strip-img" />
+        <img src="Images/Unas_6.jpg" alt="" aria-hidden="true" class="strip-img" />
+        <img src="Images/Unas_7.jpg" alt="" aria-hidden="true" class="strip-img" />
       </div>
     </div>
+
   </section>
 
   <div class="gold-rule max-w-md mx-auto"></div>
@@ -230,29 +209,51 @@
         <label class="block"><span class="text-sm text-warm">Nombre*</span>
           <input id="f_nombre" type="text" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream" placeholder="Tu nombre" /></label>
         <label class="block"><span class="text-sm text-warm">Teléfono*</span>
-          <input id="f_tel" type="tel" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream" placeholder="+56 9 ..." /></label>
+          <input id="f_tel" type="tel" inputmode="numeric" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream" placeholder="+56 9 1234 5678" /></label>
       </div>
 
       <label class="block"><span class="text-sm text-warm">Correo (opcional)</span>
         <input id="f_correo" type="email" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream" placeholder="tucorreo@mail.com" /></label>
 
-      <label class="block"><span class="text-sm text-warm">Servicio*</span>
-        <select id="f_servicio" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream">
-          <option value="">Elige un servicio</option>
-          <optgroup label="Pestañas">
-            <option>Efecto Rímel — $28.000</option>
-            <option>Volumen Light — $32.000</option>
-            <option>Volumen Tecnológico — $34.000</option>
-          </optgroup>
-          <optgroup label="Uñas">
-            <option>Uñas Permanente</option>
-            <option>Uñas Kapping</option>
-            <option>Uñas Soft Gel</option>
-            <option>Uñas Polygel</option>
-            <option>Uñas Acrílicas</option>
-          </optgroup>
-        </select>
-      </label>
+      <fieldset id="f_servicios">
+        <legend class="text-sm text-warm mb-2">Servicio(s)* <span class="text-warm/60 font-normal">(una opción por categoría)</span></legend>
+        <div class="bg-ink border hairline rounded-lg px-3 py-3 space-y-3">
+          <p class="text-xs text-gold tracking-widest uppercase">Pestañas</p>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="svc_pestanas" class="f_svc accent-gold w-4 h-4" value="Efecto Rímel — $28.000" />
+            <span class="text-cream text-sm">Efecto Rímel — $28.000</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="svc_pestanas" class="f_svc accent-gold w-4 h-4" value="Volumen Light — $32.000" />
+            <span class="text-cream text-sm">Volumen Light — $32.000</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="svc_pestanas" class="f_svc accent-gold w-4 h-4" value="Volumen Tecnológico — $34.000" />
+            <span class="text-cream text-sm">Volumen Tecnológico — $34.000</span>
+          </label>
+          <p class="text-xs text-gold tracking-widest uppercase pt-1">Uñas</p>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="svc_unas" class="f_svc accent-gold w-4 h-4" value="Uñas Permanente" />
+            <span class="text-cream text-sm">Uñas Permanente</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="svc_unas" class="f_svc accent-gold w-4 h-4" value="Uñas Kapping" />
+            <span class="text-cream text-sm">Uñas Kapping</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="svc_unas" class="f_svc accent-gold w-4 h-4" value="Uñas Soft Gel" />
+            <span class="text-cream text-sm">Uñas Soft Gel</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="svc_unas" class="f_svc accent-gold w-4 h-4" value="Uñas Polygel" />
+            <span class="text-cream text-sm">Uñas Polygel</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="radio" name="svc_unas" class="f_svc accent-gold w-4 h-4" value="Uñas Acrílicas" />
+            <span class="text-cream text-sm">Uñas Acrílicas</span>
+          </label>
+        </div>
+      </fieldset>
 
       <div class="grid sm:grid-cols-2 gap-4">
         <label class="block"><span class="text-sm text-warm">Fecha deseada*</span>
@@ -270,7 +271,7 @@
 
       <label class="flex items-start gap-3 text-sm">
         <input id="f_pol" type="checkbox" class="mt-1 accent-gold w-4 h-4" />
-        <span class="text-warm">He leído y acepto las <a href="#politicas" class="text-gold underline">políticas</a> de ConyBeautiful.*</span>
+        <span class="text-warm">He leído y acepto las <a href="#politicas" class="text-gold underline">políticas</a> de ConiBeautyStudio.*</span>
       </label>
 
       <button id="enviar" class="w-full text-ink bg-gold hover:bg-goldlt transition-colors font-medium px-6 py-3 rounded-full">
@@ -283,13 +284,21 @@
   <!-- FOOTER -->
   <footer class="border-t hairline">
     <div class="max-w-5xl mx-auto px-5 py-12 text-center">
-      <p class="font-display text-2xl text-goldlt">ConyBeautiful</p>
+      <p class="font-display text-2xl text-goldlt">ConiBeautyStudio</p>
       <p class="text-warm text-sm mt-2">Pestañas · Uñas con diseño personalizado</p>
       <!-- REEMPLAZAR: Instagram real (se toma de js/main.js) -->
-      <a id="ig" href="#" class="inline-block mt-4 text-cream hover:text-goldlt transition-colors text-sm">@conybeautiful</a>
-      <p class="text-warm/60 text-xs mt-8">© <span id="year"></span> ConyBeautiful · Hecho con cariño.</p>
+      <a id="ig" href="#" class="inline-block mt-4 text-cream hover:text-goldlt transition-colors text-sm">@coni_beautystudio</a>
+      <p class="text-warm/60 text-xs mt-8">© <span id="year"></span> ConiBeautyStudio · Hecho con cariño.</p>
     </div>
   </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" aria-modal="true" role="dialog" aria-label="Vista ampliada">
+    <button id="lb-close" aria-label="Cerrar">&times;</button>
+    <button id="lb-prev"  aria-label="Anterior">&#8592;</button>
+    <button id="lb-next"  aria-label="Siguiente">&#8594;</button>
+    <img id="lb-img" src="" alt="Diseño de uñas ampliado" />
+  </div>
 
   <!-- Lógica -->
   <script src="js/main.js"></script>

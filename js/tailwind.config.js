@@ -1,5 +1,5 @@
 /* ============================================================
-   ConyBeautiful — Configuración de Tailwind CSS (Play CDN)
+   ConiBeautyStudio — Configuración de Tailwind CSS (Play CDN)
    Archivo: js/tailwind.config.js
 
    Define los colores y tipografías de la marca para poder usarlos
