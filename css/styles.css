@@ -28,8 +28,77 @@
 
 /* ==================== 1. Base global ==================== */
 html  { scroll-behavior: smooth; background: #121110; }
-body  { color: #F4EFE7; font-family: 'Montserrat', sans-serif; position: relative; }
+body  { color: #F4EFE7; font-family: 'Montserrat', sans-serif; position: relative;
+        transition: background-color .4s ease, color .4s ease; }
 .hairline { border-color: #2A2724; }
+
+/* ==================== Modo claro ==================== */
+html.light { background: #F7F4EF; }
+
+html.light body { color: #1B1917; }
+
+html.light .hairline { border-color: #D8D0C5; }
+
+/* Nav */
+html.light header { background: rgba(247,244,239,0.88); border-color: #D8D0C5; }
+
+/* Fondo — glows y grid muy suaves */
+html.light .bg-grid { opacity: .18; }
+html.light .glow-1  { background: radial-gradient(circle, #C9A24B28, transparent 70%); }
+html.light .glow-2  { background: radial-gradient(circle, #C9A24B1a, transparent 70%); }
+html.light .glow-3  { background: radial-gradient(circle, #C9A24B20, transparent 70%); }
+
+/* Tarjetas y superficies oscuras → blancas */
+html.light .bg-char,
+html.light [class*="bg-char"] { background-color: #FFFFFF !important; }
+html.light .bg-ink,
+html.light [class*="bg-ink"]  { background-color: #F0EBE3 !important; }
+
+/* Textos */
+html.light .text-cream  { color: #1B1917; }
+html.light .text-warm   { color: #6B6055; }
+html.light .text-gold   { color: #A6812A; }
+html.light .text-goldlt { color: #8A6A20; }
+
+/* Inputs y selects */
+html.light input,
+html.light select,
+html.light textarea {
+  background-color: #FFFFFF !important;
+  color: #1B1917 !important;
+  border-color: #D8D0C5 !important;
+}
+html.light input::placeholder,
+html.light textarea::placeholder { color: #A8998A; }
+
+/* Footer */
+html.light footer { border-color: #D8D0C5; }
+
+/* Botón toggle */
+.theme-toggle-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid #2A2724;
+  background: transparent;
+  color: #C9A24B;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color .25s, background .25s, color .25s;
+}
+.theme-toggle-btn:hover { border-color: #C9A24B; background: #C9A24B22; }
+
+html.light .theme-toggle-btn { border-color: #D8D0C5; color: #8A6A20; }
+html.light .theme-toggle-btn:hover { border-color: #A6812A; background: #C9A24B22; }
+
+/* Mostrar icono correcto según modo */
+.theme-icon-light { display: none; }
+.theme-icon-dark  { display: block; }
+html.light .theme-icon-light { display: block; }
+html.light .theme-icon-dark  { display: none; }
 
 
 /* ==================== 2. Fondo ambiental animado ==================== */

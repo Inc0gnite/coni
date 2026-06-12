@@ -54,7 +54,13 @@
   <header class="sticky top-0 z-40 backdrop-blur bg-ink/85 border-b hairline">
     <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
       <a href="#inicio" class="font-display text-xl tracking-wide text-goldlt">ConiBeautyStudio</a>
-      <a href="#reservar" class="text-sm font-medium text-ink bg-gold hover:bg-goldlt transition-colors px-4 py-2 rounded-full">Reservar</a>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Cambiar tema" class="theme-toggle-btn">
+          <span class="theme-icon-dark">&#9790;</span>
+          <span class="theme-icon-light">&#9788;</span>
+        </button>
+        <a href="#reservar" class="text-sm font-medium text-ink bg-gold hover:bg-goldlt transition-colors px-4 py-2 rounded-full">Reservar</a>
+      </div>
     </div>
   </header>
 

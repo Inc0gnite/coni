@@ -31,6 +31,21 @@ igEl.textContent = '@' + CONFIG.instagram;
 igEl.href = 'https://www.instagram.com/coni_beautystudio/' + CONFIG.instagram;
 
 
+/* ==================== Modo claro / oscuro ==================== */
+(function () {
+  const html   = document.documentElement;
+  const btn    = document.getElementById('theme-toggle');
+  const stored = localStorage.getItem('theme');
+
+  if (stored === 'light') html.classList.add('light');
+
+  btn.addEventListener('click', () => {
+    const isLight = html.classList.toggle('light');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+})();
+
+
 
 
 /* ==================== 4. Formulario → WhatsApp ==================== */
