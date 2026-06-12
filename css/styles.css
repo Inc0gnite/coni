@@ -214,6 +214,10 @@ select:focus-visible, textarea:focus-visible {
 }
 #lb-prev { left: 1rem; }
 #lb-next { right: 1rem; }
+
+@media (max-width: 640px) {
+  #lb-prev, #lb-next { display: none !important; }
+}
 #lb-prev:hover, #lb-next:hover {
   background: #C9A24B;
   border-color: #C9A24B;

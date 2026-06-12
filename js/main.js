@@ -189,6 +189,51 @@ document.getElementById('enviar').addEventListener('click', () => {
     if (e.key === 'ArrowLeft')  navigate(-1);
     if (e.key === 'ArrowRight') navigate(1);
   });
+
+  /* Swipe táctil en el lightbox */
+  let touchStartX = 0;
+  let touchStartY = 0;
+  lb.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    const dx = touchStartX - e.changedTouches[0].clientX;
+    const dy = touchStartY - e.changedTouches[0].clientY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+      navigate(dx > 0 ? 1 : -1);
+    }
+  }, { passive: true });
+})();
+
+
+/* ==================== 5b. Swipe táctil en la tira de uñas ==================== */
+(function () {
+  const track = document.getElementById('carousel-track') || document.querySelector('.strip-track');
+  if (!track) return;
+
+  let startX = 0;
+  let isDragging = false;
+  let pausedByTouch = false;
+
+  track.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    track.style.animationPlayState = 'paused';
+    pausedByTouch = true;
+  }, { passive: true });
+
+  track.addEventListener('touchend', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    /* Reanudar la animación tras un breve instante */
+    setTimeout(() => {
+      if (pausedByTouch) {
+        track.style.animationPlayState = '';
+        pausedByTouch = false;
+      }
+    }, 800);
+  }, { passive: true });
 })();
 
 
