@@ -16,8 +16,8 @@
 
 /* ==================== 1. CONFIG (REEMPLAZAR) ==================== */
 const CONFIG = {
-  whatsapp:  '569XXXXXXXX',   // REEMPLAZAR: número real, solo dígitos con código país
-  instagram: 'conybeautiful'  // REEMPLAZAR: usuario real de Instagram
+  whatsapp:  '56950306560',   // REEMPLAZAR: número real, solo dígitos con código país
+  instagram: 'coni_beautystudio'  // REEMPLAZAR: usuario real de Instagram
 };
 
 /* Tarifa de DECORACIÓN por uña según complejidad.
@@ -32,7 +32,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 const igEl = document.getElementById('ig');
 igEl.textContent = '@' + CONFIG.instagram;
-igEl.href = 'https://instagram.com/' + CONFIG.instagram;
+igEl.href = 'https://www.instagram.com/coni_beautystudio/' + CONFIG.instagram;
 
 
 /* ==================== 3. Estimador de uñas ==================== */
