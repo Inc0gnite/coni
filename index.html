@@ -1,0 +1,297 @@
+<!doctype html>
+<!--
+  ============================================================
+  ConyBeautiful — Landing (KENSETSU)
+  Estructura del proyecto:
+    index.html              -> esta página (estructura)
+    css/styles.css          -> estilos y animaciones
+    js/tailwind.config.js   -> colores y tipografías de marca
+    js/main.js              -> lógica (config, estimador, formulario)
+
+  REEMPLAZAR ANTES DE PUBLICAR (ver README.md):
+    - WhatsApp e Instagram .. en js/main.js (CONFIG)
+    - Fotos ................. bloques "[Foto de tu trabajo]"
+    - Eslogan y textos ...... marcados con "REEMPLAZAR"
+    - Valores base de uñas .. los confirma Cony (no inventados)
+  NO se inventan precios ni trabajos. Lo que falta queda como placeholder.
+  ============================================================
+-->
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ConyBeautiful — Pestañas y Uñas</title>
+  <meta name="description" content="ConyBeautiful: extensiones de pestañas y uñas con diseño personalizado. Revisa servicios, precios y reserva tu hora por WhatsApp." />
+  <meta property="og:title" content="ConyBeautiful — Pestañas y Uñas" />
+  <meta property="og:description" content="Extensiones de pestañas y uñas con diseño personalizado. Reserva por WhatsApp." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="og-image.jpg" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23121110'/><text x='16' y='23' font-size='20' text-anchor='middle' fill='%23C9A24B' font-family='Georgia,serif'>C</text></svg>" />
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind + configuración de marca -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tailwind.config.js"></script>
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="font-sans antialiased">
+
+  <!-- Fondo ambiental animado -->
+  <div class="bg-fx" aria-hidden="true">
+    <span class="glow glow-1"></span>
+    <span class="glow glow-2"></span>
+    <span class="glow glow-3"></span>
+  </div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-ink/85 border-b hairline">
+    <div class="max-w-5xl mx-auto px-5 h-16 flex items-center justify-between">
+      <a href="#inicio" class="font-display text-xl tracking-wide text-goldlt">ConyBeautiful</a>
+      <a href="#reservar" class="text-sm font-medium text-ink bg-gold hover:bg-goldlt transition-colors px-4 py-2 rounded-full">Reservar</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-5 pt-20 pb-16 md:pt-28 md:pb-24 text-center reveal">
+      <p class="text-warm tracking-[0.3em] text-xs uppercase mb-6">Pestañas · Uñas</p>
+      <h1 class="font-display text-4xl md:text-6xl leading-tight text-cream">
+        Tu mirada y tus manos,<br><span class="italic wm-anim">como nunca antes</span>
+      </h1>
+      <!-- REEMPLAZAR: eslogan real de Cony -->
+      <p class="mt-6 text-warm max-w-xl mx-auto text-base md:text-lg">
+        Extensiones de pestañas y uñas con diseño personalizado. Revisa servicios y precios, y reserva tu hora por WhatsApp.
+      </p>
+      <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="#reservar" class="text-ink bg-gold hover:bg-goldlt transition-colors font-medium px-7 py-3 rounded-full">Reservar por WhatsApp</a>
+        <a href="#servicios" class="border hairline hover:border-gold text-cream px-7 py-3 rounded-full transition-colors">Ver servicios</a>
+      </div>
+    </div>
+    <div class="gold-rule max-w-md mx-auto"></div>
+  </section>
+
+  <!-- PESTAÑAS -->
+  <section id="servicios" class="max-w-5xl mx-auto px-5 py-16 md:py-20">
+    <div class="reveal">
+      <p class="text-gold tracking-[0.25em] text-xs uppercase">Pestañas</p>
+      <h2 class="font-display text-3xl md:text-4xl text-cream mt-2">Extensiones de pestañas</h2>
+      <p class="text-warm mt-3 max-w-xl">Tres técnicas según el efecto que buscas. El abono de reserva se descuenta del valor final.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-5 mt-10">
+      <article class="reveal bg-char border hairline rounded-2xl overflow-hidden flex flex-col">
+        <div class="photo-slot aspect-[4/3] flex items-center justify-center text-warm/60 text-xs">[Foto de tu trabajo]</div>
+        <div class="p-5 flex flex-col gap-3 grow">
+          <h3 class="font-display text-xl text-cream">Efecto Rímel</h3>
+          <p class="text-warm text-sm grow">Natural y definido, como un rímel perfecto. <!-- REEMPLAZAR descripción --></p>
+          <div class="flex items-center justify-between pt-2 border-t hairline">
+            <span class="text-goldlt font-medium text-lg">$28.000</span>
+            <a href="#reservar" class="text-xs text-gold hover:text-goldlt">Reservar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="reveal bg-char border hairline rounded-2xl overflow-hidden flex flex-col">
+        <div class="photo-slot aspect-[4/3] flex items-center justify-center text-warm/60 text-xs">[Foto de tu trabajo]</div>
+        <div class="p-5 flex flex-col gap-3 grow">
+          <h3 class="font-display text-xl text-cream">Volumen Light</h3>
+          <p class="text-warm text-sm grow">Más densidad, manteniendo la ligereza. <!-- REEMPLAZAR descripción --></p>
+          <div class="flex items-center justify-between pt-2 border-t hairline">
+            <span class="text-goldlt font-medium text-lg">$32.000</span>
+            <a href="#reservar" class="text-xs text-gold hover:text-goldlt">Reservar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="reveal bg-char border hairline rounded-2xl overflow-hidden flex flex-col">
+        <div class="photo-slot aspect-[4/3] flex items-center justify-center text-warm/60 text-xs">[Foto de tu trabajo]</div>
+        <div class="p-5 flex flex-col gap-3 grow">
+          <h3 class="font-display text-xl text-cream">Volumen Tecnológico</h3>
+          <p class="text-warm text-sm grow">Máximo volumen con técnica avanzada. <!-- REEMPLAZAR descripción --></p>
+          <div class="flex items-center justify-between pt-2 border-t hairline">
+            <span class="text-goldlt font-medium text-lg">$34.000</span>
+            <a href="#reservar" class="text-xs text-gold hover:text-goldlt">Reservar →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="gold-rule max-w-md mx-auto"></div>
+
+  <!-- UÑAS + ESTIMADOR -->
+  <section id="unas" class="max-w-5xl mx-auto px-5 py-16 md:py-20">
+    <div class="reveal">
+      <p class="text-gold tracking-[0.25em] text-xs uppercase">Uñas</p>
+      <h2 class="font-display text-3xl md:text-4xl text-cream mt-2">Uñas con diseño</h2>
+      <p class="text-warm mt-3 max-w-2xl">Trabajamos sobre un valor base por técnica, más los detalles de diseño. Para una cotización exacta, <span class="text-cream">envíanos siempre tu foto de referencia por WhatsApp</span>.</p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mt-8">
+      <span class="bg-char border hairline rounded-full px-4 py-2 text-sm text-cream">Permanente</span>
+      <span class="bg-char border hairline rounded-full px-4 py-2 text-sm text-cream">Kapping</span>
+      <span class="bg-char border hairline rounded-full px-4 py-2 text-sm text-cream">Soft Gel</span>
+      <span class="bg-char border hairline rounded-full px-4 py-2 text-sm text-cream">Polygel</span>
+      <span class="bg-char border hairline rounded-full px-4 py-2 text-sm text-cream">Acrílicas</span>
+    </div>
+
+    <!-- Estimador -->
+    <div class="estimator reveal mt-10 grid md:grid-cols-2 gap-6 bg-char border hairline rounded-2xl p-6 md:p-8">
+      <div class="space-y-5">
+        <h3 class="font-display text-2xl text-cream">Estima tu diseño</h3>
+
+        <label class="block">
+          <span class="text-sm text-warm">Técnica</span>
+          <select id="tecnica" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream">
+            <option>Permanente</option>
+            <option>Kapping</option>
+            <option>Soft Gel</option>
+            <option>Polygel</option>
+            <option>Acrílicas</option>
+          </select>
+        </label>
+
+        <label class="block">
+          <span class="text-sm text-warm">Uñas con diseño / decoración: <span id="nailsOut" class="text-goldlt font-medium">2</span></span>
+          <input id="nails" type="range" min="0" max="10" step="1" value="2" class="mt-2 w-full accent-gold" />
+        </label>
+
+        <div>
+          <span class="text-sm text-warm">Complejidad del diseño</span>
+          <div class="mt-2 grid grid-cols-3 gap-2" id="complex">
+            <button data-c="baja"  class="cbtn border hairline rounded-lg py-2 text-sm text-cream">Baja</button>
+            <button data-c="media" class="cbtn border hairline rounded-lg py-2 text-sm text-cream">Media</button>
+            <button data-c="alta"  class="cbtn border hairline rounded-lg py-2 text-sm text-cream">Alta</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center bg-ink rounded-xl p-6 border hairline">
+        <p class="text-xs text-warm uppercase tracking-widest">Estimación de decoración</p>
+        <p class="mt-2 text-3xl font-display text-goldlt"><span id="estimate">$1.500</span></p>
+        <p class="mt-1 text-sm text-warm">para <span id="tecOut">Permanente</span></p>
+        <p class="mt-4 text-xs text-warm leading-relaxed border-t hairline pt-4">
+          Valor referencial de la decoración ($500 a $1.000 por uña, según complejidad),
+          <span class="text-cream">por sobre el valor base de la técnica</span>. El precio final
+          y la duración se confirman con tu foto de referencia por WhatsApp.
+        </p>
+        <a href="#reservar" class="mt-5 text-center text-ink bg-gold hover:bg-goldlt transition-colors font-medium px-5 py-2.5 rounded-full">Cotizar con mi foto</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="gold-rule max-w-md mx-auto"></div>
+
+  <!-- POLITICAS -->
+  <section id="politicas" class="max-w-5xl mx-auto px-5 py-16 md:py-20">
+    <div class="reveal">
+      <p class="text-gold tracking-[0.25em] text-xs uppercase">Antes de reservar</p>
+      <h2 class="font-display text-3xl md:text-4xl text-cream mt-2">Políticas</h2>
+      <p class="text-warm mt-3 max-w-2xl">Para cuidar tu hora y la de todas, te pedimos leer y aceptar estas condiciones.</p>
+    </div>
+
+    <div class="reveal mt-8 grid md:grid-cols-2 gap-x-10 gap-y-4 text-sm">
+      <ul class="space-y-3">
+        <li class="flex gap-3"><span class="text-gold">·</span><span><span class="text-cream">Edad mínima 15 años.</span></span></li>
+        <li class="flex gap-3"><span class="text-gold">·</span><span>Abono obligatorio de <span class="text-cream">$10.000</span>, que se descuenta del valor final. El abono <span class="text-cream">no es reembolsable</span>.</span></li>
+        <li class="flex gap-3"><span class="text-gold">·</span><span>Si el servicio cuesta menos de $10.000, se paga el total.</span></li>
+        <li class="flex gap-3"><span class="text-gold">·</span><span>Confirma tu cita el día anterior <span class="text-cream">antes de las 19:00</span>.</span></li>
+        <li class="flex gap-3"><span class="text-gold">·</span><span>No se reservan horas sin abono. Si no se paga de inmediato, se vuelve a consultar disponibilidad.</span></li>
+      </ul>
+      <ul class="space-y-3">
+        <li class="flex gap-3"><span class="text-gold">·</span><span>Hasta 5 min de atraso sin penalización.</span></li>
+        <li class="flex gap-3"><span class="text-gold">·</span><span>Entre 6 y 10 min de atraso: multa de $5.000.</span></li>
+        <li class="flex gap-3"><span class="text-gold">·</span><span>Más de 10 min de atraso: la cita se cancela.</span></li>
+        <li class="flex gap-3"><span class="text-gold">·</span><span>Inasistencia sin aviso de 24 h: pérdida del abono. Con aviso de 24 h, el abono queda válido para reagendar.</span></li>
+        <li class="flex gap-3"><span class="text-gold">·</span><span>Informa alergias, embarazo o condiciones médicas antes de reservar.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="gold-rule max-w-md mx-auto"></div>
+
+  <!-- RESERVAR / FORMULARIO -->
+  <section id="reservar" class="max-w-2xl mx-auto px-5 py-16 md:py-20">
+    <div class="reveal text-center">
+      <p class="text-gold tracking-[0.25em] text-xs uppercase">Reserva</p>
+      <h2 class="font-display text-3xl md:text-4xl text-cream mt-2">Solicita tu hora</h2>
+      <p class="text-warm mt-3">Completa tus datos. Al enviar, se abre WhatsApp con tu solicitud lista.</p>
+    </div>
+
+    <div class="reveal mt-8 bg-char border hairline rounded-2xl p-6 md:p-8 space-y-4">
+      <div class="grid sm:grid-cols-2 gap-4">
+        <label class="block"><span class="text-sm text-warm">Nombre*</span>
+          <input id="f_nombre" type="text" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream" placeholder="Tu nombre" /></label>
+        <label class="block"><span class="text-sm text-warm">Teléfono*</span>
+          <input id="f_tel" type="tel" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream" placeholder="+56 9 ..." /></label>
+      </div>
+
+      <label class="block"><span class="text-sm text-warm">Correo (opcional)</span>
+        <input id="f_correo" type="email" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream" placeholder="tucorreo@mail.com" /></label>
+
+      <label class="block"><span class="text-sm text-warm">Servicio*</span>
+        <select id="f_servicio" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream">
+          <option value="">Elige un servicio</option>
+          <optgroup label="Pestañas">
+            <option>Efecto Rímel — $28.000</option>
+            <option>Volumen Light — $32.000</option>
+            <option>Volumen Tecnológico — $34.000</option>
+          </optgroup>
+          <optgroup label="Uñas">
+            <option>Uñas Permanente</option>
+            <option>Uñas Kapping</option>
+            <option>Uñas Soft Gel</option>
+            <option>Uñas Polygel</option>
+            <option>Uñas Acrílicas</option>
+          </optgroup>
+        </select>
+      </label>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <label class="block"><span class="text-sm text-warm">Fecha deseada*</span>
+          <input id="f_fecha" type="date" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream" /></label>
+        <label class="block"><span class="text-sm text-warm">Horario preferido*</span>
+          <input id="f_horario" type="text" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream" placeholder="Ej: mañana, 15:00..." /></label>
+      </div>
+
+      <label class="block"><span class="text-sm text-warm">Observaciones (alergias, embarazo, condiciones médicas)</span>
+        <textarea id="f_obs" rows="3" class="mt-1 w-full bg-ink border hairline rounded-lg px-3 py-2.5 text-cream" placeholder="Cuéntanos lo relevante"></textarea></label>
+
+      <p class="text-xs text-warm bg-ink rounded-lg p-3 border hairline">
+        <span class="text-goldlt">¿Uñas?</span> Recuerda adjuntar tu <span class="text-cream">foto de referencia</span> directamente en el chat de WhatsApp después de enviar.
+      </p>
+
+      <label class="flex items-start gap-3 text-sm">
+        <input id="f_pol" type="checkbox" class="mt-1 accent-gold w-4 h-4" />
+        <span class="text-warm">He leído y acepto las <a href="#politicas" class="text-gold underline">políticas</a> de ConyBeautiful.*</span>
+      </label>
+
+      <button id="enviar" class="w-full text-ink bg-gold hover:bg-goldlt transition-colors font-medium px-6 py-3 rounded-full">
+        Enviar solicitud por WhatsApp
+      </button>
+      <p id="formMsg" class="text-sm text-center min-h-[1.25rem]"></p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t hairline">
+    <div class="max-w-5xl mx-auto px-5 py-12 text-center">
+      <p class="font-display text-2xl text-goldlt">ConyBeautiful</p>
+      <p class="text-warm text-sm mt-2">Pestañas · Uñas con diseño personalizado</p>
+      <!-- REEMPLAZAR: Instagram real (se toma de js/main.js) -->
+      <a id="ig" href="#" class="inline-block mt-4 text-cream hover:text-goldlt transition-colors text-sm">@conybeautiful</a>
+      <p class="text-warm/60 text-xs mt-8">© <span id="year"></span> ConyBeautiful · Hecho con cariño.</p>
+    </div>
+  </footer>
+
+  <!-- Lógica -->
+  <script src="js/main.js"></script>
+</body>
+</html>
