@@ -33,46 +33,64 @@ body  { color: #F4EFE7; font-family: 'Montserrat', sans-serif; position: relativ
 .hairline { border-color: #2A2724; }
 
 /* ==================== Modo claro ==================== */
-html.light { background: #F7F4EF; }
+/*
+  Paleta crema cálida — sin blancos puros para que los detalles
+  del fondo (puntos, glows) sean visibles y armonicen con el dorado.
+  Base:   #EDE0CC  crema oscura (fondo)
+  Card:   #E4D4BA  crema media (tarjetas)
+  Input:  #D9C9AE  crema profunda (inputs)
+  Border: #C4AA82  dorado tierra (bordes)
+*/
+html.light { background: #EDE0CC; }
 
 html.light body { color: #1B1917; }
 
-html.light .hairline { border-color: #D8D0C5; }
+html.light .hairline { border-color: #C4AA82; }
 
 /* Nav */
-html.light header { background: rgba(247,244,239,0.88); border-color: #D8D0C5; }
+html.light header { background: rgba(237,224,204,0.90); border-color: #C4AA82; }
 
-/* Fondo — glows y grid muy suaves */
-html.light .bg-grid { opacity: .18; }
-html.light .glow-1  { background: radial-gradient(circle, #C9A24B28, transparent 70%); }
-html.light .glow-2  { background: radial-gradient(circle, #C9A24B1a, transparent 70%); }
-html.light .glow-3  { background: radial-gradient(circle, #C9A24B20, transparent 70%); }
+/* Fondo — puntos y glows más visibles sobre crema */
+html.light .bg-grid {
+  opacity: 1;
+  background-image: radial-gradient(#A6812A55 1.5px, transparent 1.5px);
+  background-size: 34px 34px;
+}
+html.light .glow-1 { background: radial-gradient(circle, #C9A24B55, transparent 70%); }
+html.light .glow-2 { background: radial-gradient(circle, #A6812A44, transparent 70%); }
+html.light .glow-3 { background: radial-gradient(circle, #E3C77A44, transparent 70%); }
 
-/* Tarjetas y superficies oscuras → blancas */
+/* Tarjetas y superficies */
 html.light .bg-char,
-html.light [class*="bg-char"] { background-color: #FFFFFF !important; }
+html.light [class*="bg-char"] { background-color: #E4D4BA !important; }
 html.light .bg-ink,
-html.light [class*="bg-ink"]  { background-color: #F0EBE3 !important; }
+html.light [class*="bg-ink"]  { background-color: #D9C9AE !important; }
 
 /* Textos */
 html.light .text-cream  { color: #1B1917; }
-html.light .text-warm   { color: #6B6055; }
-html.light .text-gold   { color: #A6812A; }
-html.light .text-goldlt { color: #8A6A20; }
+html.light .text-warm   { color: #5C4A35; }
+html.light .text-gold   { color: #8A6820; }
+html.light .text-goldlt { color: #6E5218; }
 
 /* Inputs y selects */
 html.light input,
 html.light select,
 html.light textarea {
-  background-color: #FFFFFF !important;
+  background-color: #D9C9AE !important;
   color: #1B1917 !important;
-  border-color: #D8D0C5 !important;
+  border-color: #C4AA82 !important;
 }
 html.light input::placeholder,
-html.light textarea::placeholder { color: #A8998A; }
+html.light textarea::placeholder { color: #8C7355; }
 
 /* Footer */
-html.light footer { border-color: #D8D0C5; }
+html.light footer { border-color: #C4AA82; }
+
+/* Tira de uñas — fade lateral sobre crema */
+html.light .strip-wrap {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #EDE0CC 8%, #EDE0CC 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #EDE0CC 8%, #EDE0CC 92%, transparent 100%);
+}
 
 /* Botón toggle */
 .theme-toggle-btn {
