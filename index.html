@@ -62,6 +62,8 @@
         <a href="#reservar" class="text-sm font-medium text-ink bg-gold hover:bg-goldlt transition-colors px-4 py-2 rounded-full">Reservar</a>
       </div>
     </div>
+    <!-- Barra de progreso de scroll (mismo dorado del botón Reservar) -->
+    <div id="scroll-progress" aria-hidden="true"></div>
   </header>
 
   <!-- HERO -->
@@ -324,6 +326,16 @@
       <p class="text-warm/60 text-xs mt-8">© <span id="year"></span> ConiBeautyStudio · Hecho con cariño.</p>
     </div>
   </footer>
+
+  <!-- Botón flotante de reserva con anillo de progreso de scroll -->
+  <a href="#reservar" id="fab-reservar" aria-label="Ir a reservar">
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <circle class="fab-ring-bg" cx="24" cy="24" r="21" />
+      <circle class="fab-ring" cx="24" cy="24" r="21" />
+    </svg>
+    <span class="fab-icon">&#10022;</span>
+    <span class="fab-label">Reservar</span>
+  </a>
 
   <!-- Lightbox -->
   <div id="lightbox" aria-modal="true" role="dialog" aria-label="Vista ampliada">

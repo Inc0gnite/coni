@@ -37,7 +37,8 @@ igEl.href = 'https://www.instagram.com/coni_beautystudio/' + CONFIG.instagram;
   const btn    = document.getElementById('theme-toggle');
   const stored = localStorage.getItem('theme');
 
-  if (stored === 'light') html.classList.add('light');
+  /* Modo claro por defecto; solo queda oscuro si el usuario lo eligió antes */
+  if (stored !== 'dark') html.classList.add('light');
 
   btn.addEventListener('click', () => {
     const isLight = html.classList.toggle('light');
@@ -263,7 +264,46 @@ if (fx && !reduceMotion) {
     s.style.animationDelay    = (-Math.random() * dur).toFixed(2) + 's';
     fx.appendChild(s);
   }
+
+  /* Destellos con forma (estrellas y flores) que flotan suavemente */
+  const glyphs = ['✦', '✧', '❀', '✵']; // ✦ ✧ ❀ ✵
+  for (let i = 0; i < 10; i++) {
+    const g = document.createElement('span');
+    g.className = 'sparkle-glyph';
+    g.textContent = glyphs[i % glyphs.length];
+    g.style.fontSize          = (10 + Math.random() * 10).toFixed(0) + 'px';
+    g.style.left              = (Math.random() * 100).toFixed(2) + 'vw';
+    g.style.top               = (10 + Math.random() * 84).toFixed(2) + 'vh';
+    const dur                 = 9 + Math.random() * 9;
+    g.style.animationDuration = dur.toFixed(2) + 's';
+    g.style.animationDelay    = (-Math.random() * dur).toFixed(2) + 's';
+    fx.appendChild(g);
+  }
 }
+
+
+/* ==================== Progreso de scroll + botón flotante de reserva ==================== */
+/* La barra bajo el nav y el anillo del botón flotante avanzan juntos
+   mientras se baja por la página. Al llegar al final, el botón late. */
+(function () {
+  const bar  = document.getElementById('scroll-progress');
+  const fab  = document.getElementById('fab-reservar');
+  const ring = fab.querySelector('.fab-ring');
+  const RING_LEN = 131.9; // perímetro del círculo r=21
+
+  function update() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p   = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+    ring.style.strokeDashoffset = (RING_LEN * (1 - p)).toFixed(1);
+    fab.classList.toggle('show', window.scrollY > 350);
+    fab.classList.toggle('full', p > 0.985);
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
 
 
 /* ==================== 6. Reveal: aparición al hacer scroll ==================== */
