@@ -182,7 +182,6 @@ document.getElementById('enviar').addEventListener('click', () => {
   lbClose.addEventListener('click', close);
   lbPrev.addEventListener('click', () => navigate(-1));
   lbNext.addEventListener('click', () => navigate(1));
-  lb.addEventListener('click', e => { if (e.target === lb) close(); });
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('open')) return;
     if (e.key === 'Escape')     close();
@@ -190,26 +189,13 @@ document.getElementById('enviar').addEventListener('click', () => {
     if (e.key === 'ArrowRight') navigate(1);
   });
 
-  /* Swipe táctil en el lightbox — escucha en la imagen y en el fondo */
-  let touchStartX = 0;
-  let touchStartY = 0;
-
-  function onTouchStart(e) {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }
-  function onTouchEnd(e) {
-    const dx = touchStartX - e.changedTouches[0].clientX;
-    const dy = touchStartY - e.changedTouches[0].clientY;
-    if (group.length > 1 && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 35) {
-      navigate(dx > 0 ? 1 : -1);
-    }
-  }
-
-  lb.addEventListener('touchstart',  onTouchStart, { passive: true });
-  lb.addEventListener('touchend',    onTouchEnd,   { passive: true });
-  lbImg.addEventListener('touchstart', onTouchStart, { passive: true });
-  lbImg.addEventListener('touchend',   onTouchEnd,   { passive: true });
+  /* Toque estilo historias: mitad izquierda = anterior, mitad derecha = siguiente */
+  lb.addEventListener('click', e => {
+    if (group.length <= 1) return;
+    if (e.target === lbClose || e.target === lbPrev || e.target === lbNext) return;
+    const mitad = window.innerWidth / 2;
+    navigate(e.clientX >= mitad ? 1 : -1);
+  });
 })();
 
 
