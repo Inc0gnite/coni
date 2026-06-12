@@ -190,20 +190,26 @@ document.getElementById('enviar').addEventListener('click', () => {
     if (e.key === 'ArrowRight') navigate(1);
   });
 
-  /* Swipe táctil en el lightbox */
+  /* Swipe táctil en el lightbox — escucha en la imagen y en el fondo */
   let touchStartX = 0;
   let touchStartY = 0;
-  lb.addEventListener('touchstart', e => {
+
+  function onTouchStart(e) {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-  lb.addEventListener('touchend', e => {
+  }
+  function onTouchEnd(e) {
     const dx = touchStartX - e.changedTouches[0].clientX;
     const dy = touchStartY - e.changedTouches[0].clientY;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+    if (group.length > 1 && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 35) {
       navigate(dx > 0 ? 1 : -1);
     }
-  }, { passive: true });
+  }
+
+  lb.addEventListener('touchstart',  onTouchStart, { passive: true });
+  lb.addEventListener('touchend',    onTouchEnd,   { passive: true });
+  lbImg.addEventListener('touchstart', onTouchStart, { passive: true });
+  lbImg.addEventListener('touchend',   onTouchEnd,   { passive: true });
 })();
 
 
