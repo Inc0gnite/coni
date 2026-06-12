@@ -316,6 +316,29 @@ select:focus-visible, textarea:focus-visible {
 
 .strip-img { cursor: zoom-in; }
 
+/* ==================== Precio llamativo ==================== */
+.price-tag {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: linear-gradient(90deg, #C9A24B, #F0D080, #fff8e1, #E3C77A, #C9A24B);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: wmflow 6s linear infinite;
+}
+
+html.light .price-tag {
+  background: linear-gradient(90deg, #8A6820, #C9A24B, #A6812A, #8A6820);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: wmflow 6s linear infinite;
+}
+
 /* Apaga todas las animaciones para quienes prefieren menos movimiento */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
