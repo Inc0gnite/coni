@@ -161,12 +161,19 @@ html.light .theme-icon-dark  { display: none; }
          animation: plant-sway 11s ease-in-out infinite alternate; }
 html.light .plant { color: #A6740A; opacity: .48; }
 
-.plant-1 { width: 300px; bottom: -50px; left: -55px;  transform: rotate(24deg); }
-.plant-2 { width: 380px; bottom: -80px; right: -70px; transform: rotate(-26deg) scaleX(-1);
+/* Tamaño fluido: en celular las ramas se achican para no tapar la pantalla */
+.plant-1 { width: clamp(150px, 42vw, 300px); bottom: -28px; left: -8vw;   transform: rotate(24deg); }
+.plant-2 { width: clamp(190px, 52vw, 380px); bottom: -44px; right: -10vw; transform: rotate(-26deg) scaleX(-1);
            animation-duration: 14s; animation-delay: -4s; }
-.plant-3 { width: 230px; top: -60px; right: 14%;      transform: rotate(176deg);
+.plant-3 { width: clamp(120px, 32vw, 230px); top: -34px; right: 14%;      transform: rotate(176deg);
            animation-duration: 17s; animation-delay: -8s; opacity: .24; }
 html.light .plant-3 { opacity: .40; }
+
+@media (min-width: 768px) {
+  .plant-1 { bottom: -50px; left: -55px; }
+  .plant-2 { bottom: -80px; right: -70px; }
+  .plant-3 { top: -60px; }
+}
 
 @keyframes plant-sway {
   from { rotate: -2.5deg; }
