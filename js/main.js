@@ -252,7 +252,7 @@ const fx = document.querySelector('.bg-fx');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (fx && !reduceMotion) {
-  for (let i = 0; i < 22; i++) {
+  for (let i = 0; i < 14; i++) {
     const s = document.createElement('span');
     s.className = 'sparkle';
     const size = (2 + Math.random() * 3).toFixed(1);
@@ -267,7 +267,7 @@ if (fx && !reduceMotion) {
 
   /* Destellos con forma (estrellas y flores) que flotan suavemente */
   const glyphs = ['✦', '✧', '❀', '✵']; // ✦ ✧ ❀ ✵
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 9; i++) {
     const g = document.createElement('span');
     g.className = 'sparkle-glyph';
     g.textContent = glyphs[i % glyphs.length];
