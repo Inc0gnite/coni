@@ -155,6 +155,24 @@ html.light .theme-icon-dark  { display: none; }
   100% { transform: translateY(-130px) scale(1); opacity: 0; }
 }
 
+/* Ramas doradas que se mecen (SVG fijo en el fondo; solo rota = GPU) */
+.plant { position: absolute; color: #C9A24B; opacity: .16; pointer-events: none;
+         will-change: transform; transform-origin: bottom center;
+         animation: plant-sway 11s ease-in-out infinite alternate; }
+html.light .plant { color: #A6740A; opacity: .30; }
+
+.plant-1 { width: 170px; bottom: -30px; left: -34px;  transform: rotate(24deg); }
+.plant-2 { width: 220px; bottom: -50px; right: -44px; transform: rotate(-26deg) scaleX(-1);
+           animation-duration: 14s; animation-delay: -4s; }
+.plant-3 { width: 130px; top: -40px; right: 16%;      transform: rotate(176deg);
+           animation-duration: 17s; animation-delay: -8s; opacity: .12; }
+html.light .plant-3 { opacity: .24; }
+
+@keyframes plant-sway {
+  from { rotate: -2.5deg; }
+  to   { rotate:  2.5deg; }
+}
+
 /* Destellos con forma (estrella ✦ y flor ❀), del rubro belleza */
 .sparkle-glyph { position: absolute; color: #C9A24B; opacity: 0; pointer-events: none;
                  will-change: transform, opacity;
@@ -466,7 +484,7 @@ html.light .price-tag {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .glow-1, .glow-2, .glow-3, .gold-rule, .wm-anim, .sparkle, .sparkle-glyph,
-  .deco, .divider-glyph, #scroll-progress, #fab-reservar, #enviar.thread-done,
+  .deco, .divider-glyph, .plant, #scroll-progress, #fab-reservar, #enviar.thread-done,
   .bg-gold:hover::after { animation: none !important; }
   section h2::after { transition: none; }
   #servicios article, #unas .estimator { transition: none; }
