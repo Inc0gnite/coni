@@ -156,17 +156,17 @@ html.light .theme-icon-dark  { display: none; }
 }
 
 /* Ramas doradas que se mecen (SVG fijo en el fondo; solo rota = GPU) */
-.plant { position: absolute; color: #C9A24B; opacity: .16; pointer-events: none;
+.plant { position: absolute; color: #C9A24B; opacity: .30; pointer-events: none;
          will-change: transform; transform-origin: bottom center;
          animation: plant-sway 11s ease-in-out infinite alternate; }
-html.light .plant { color: #A6740A; opacity: .30; }
+html.light .plant { color: #A6740A; opacity: .48; }
 
-.plant-1 { width: 170px; bottom: -30px; left: -34px;  transform: rotate(24deg); }
-.plant-2 { width: 220px; bottom: -50px; right: -44px; transform: rotate(-26deg) scaleX(-1);
+.plant-1 { width: 300px; bottom: -50px; left: -55px;  transform: rotate(24deg); }
+.plant-2 { width: 380px; bottom: -80px; right: -70px; transform: rotate(-26deg) scaleX(-1);
            animation-duration: 14s; animation-delay: -4s; }
-.plant-3 { width: 130px; top: -40px; right: 16%;      transform: rotate(176deg);
-           animation-duration: 17s; animation-delay: -8s; opacity: .12; }
-html.light .plant-3 { opacity: .24; }
+.plant-3 { width: 230px; top: -60px; right: 14%;      transform: rotate(176deg);
+           animation-duration: 17s; animation-delay: -8s; opacity: .24; }
+html.light .plant-3 { opacity: .40; }
 
 @keyframes plant-sway {
   from { rotate: -2.5deg; }
