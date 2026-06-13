@@ -48,7 +48,7 @@ html.light body { color: #1B1917; }
 html.light .hairline { border-color: #D8BC7E; }
 
 /* Nav */
-html.light header { background: rgba(251,247,238,0.90); border-color: #D8BC7E; }
+html.light header { background: rgba(251,247,238,0.96); border-color: #D8BC7E; }
 
 /* Fondo — puntos y glows más visibles sobre crema */
 html.light .bg-grid {
@@ -125,7 +125,7 @@ html.light .theme-icon-dark  { display: none; }
 .bg-fx { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
 
 /* Manchas de luz difusa (solo transform animado = barato en GPU) */
-.glow   { position: absolute; border-radius: 50%; filter: blur(70px); will-change: transform; }
+.glow   { position: absolute; border-radius: 50%; filter: blur(55px); will-change: transform; }
 .glow-1 { width: 520px; height: 520px; top: -130px; left: -110px;
           background: radial-gradient(circle, #C9A24B5e, transparent 70%);
           animation: drift1 22s ease-in-out infinite; }
@@ -196,11 +196,12 @@ section h2::after {
 
 /* ==================== Progreso de scroll (diseño del botón Reservar) ==================== */
 /* Barra bajo el nav: mismo dorado y brillo del botón Reservar */
+/* Anima solo transform (scaleX), nunca width: cero layout por frame */
 #scroll-progress {
-  position: absolute; left: 0; bottom: -1px; height: 3px; width: 0%;
+  position: absolute; left: 0; bottom: -1px; height: 3px; width: 100%;
+  transform-origin: left center; transform: scaleX(0); will-change: transform;
   background: linear-gradient(90deg, #C9A24B, #E3C77A, #fff3d0, #E3C77A, #C9A24B);
-  background-size: 220% auto; animation: wmflow 8s linear infinite;
-  border-radius: 0 999px 999px 0; box-shadow: 0 0 10px #C9A24B88;
+  border-radius: 0 999px 999px 0;
 }
 
 /* Botón flotante: píldora-círculo dorada con anillo que se llena al bajar */
@@ -220,8 +221,7 @@ section h2::after {
                     transform: rotate(-90deg); pointer-events: none; }
 #fab-reservar .fab-ring-bg { fill: none; stroke: #C9A24B33; stroke-width: 2.5; }
 #fab-reservar .fab-ring    { fill: none; stroke: #E3C77A; stroke-width: 2.5; stroke-linecap: round;
-                             stroke-dasharray: 131.9; stroke-dashoffset: 131.9;
-                             filter: drop-shadow(0 0 4px #C9A24B); transition: stroke-dashoffset .15s linear; }
+                             stroke-dasharray: 131.9; stroke-dashoffset: 131.9; }
 html.light #fab-reservar .fab-ring { stroke: #8A6820; }
 
 #fab-reservar .fab-icon  { font-size: 1.35rem; line-height: 1; }
@@ -253,8 +253,7 @@ html.light #fab-reservar .fab-label { background: #F7F0DF; color: #8F6508; borde
                 background: linear-gradient(to bottom, transparent, #C9A24B2a 6%, #C9A24B2a 96%, transparent); }
 .thread-fill  { position: absolute; inset: 0; transform-origin: top center; transform: scaleY(0);
                 will-change: transform;
-                background: linear-gradient(to bottom, transparent, #C9A24B 6%, #E3C77A 60%, #fff3d0);
-                box-shadow: 0 0 12px #C9A24B66; }
+                background: linear-gradient(to bottom, transparent, #C9A24B 6%, #E3C77A 60%, #fff3d0); }
 .thread-dot   { position: absolute; top: 0; left: 50%; width: 12px; height: 12px;
                 margin-left: -6px; border-radius: 50%; will-change: transform;
                 background: radial-gradient(circle, #fff6dd 20%, #E3C77A 55%, transparent 75%);

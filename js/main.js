@@ -300,29 +300,39 @@ if (fx && !reduceMotion) {
   const RING_LEN = 131.9; // perímetro del círculo r=21
 
   let threadLen = 0;
+  let maxScroll = 0;
+  let vh        = 0;
   let ticking   = false;
+  let fabShown  = null, fabFull = null, threadDone = null;
 
-  /* El hilo termina justo en el botón de enviar reserva */
+  /* Mide una sola vez (y en resize): nada de lecturas de layout por frame */
   function measure() {
-    const r = enviar.getBoundingClientRect();
+    vh        = window.innerHeight;
+    maxScroll = document.documentElement.scrollHeight - vh;
+    const r   = enviar.getBoundingClientRect();
     threadLen = r.top + window.scrollY + r.height / 2;
     thread.style.height = threadLen + 'px';
     update();
   }
 
   function update() {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const p   = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
-    bar.style.width = (p * 100).toFixed(2) + '%';
+    const y = window.scrollY;
+    const p = maxScroll > 0 ? Math.min(y / maxScroll, 1) : 0;
+    bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
     ring.style.strokeDashoffset = (RING_LEN * (1 - p)).toFixed(1);
-    fab.classList.toggle('show', window.scrollY > 350);
-    fab.classList.toggle('full', p > 0.985);
+
+    /* classList.toggle solo cuando el estado cambia de verdad */
+    const show = y > 350;
+    if (show !== fabShown) { fab.classList.toggle('show', show); fabShown = show; }
+    const full = p > 0.985;
+    if (full !== fabFull)  { fab.classList.toggle('full', full); fabFull = full; }
 
     /* Hilo: avanza con el punto medio del viewport (solo transform = GPU) */
-    const tp = threadLen > 0 ? Math.min((window.scrollY + window.innerHeight * 0.62) / threadLen, 1) : 0;
+    const tp = threadLen > 0 ? Math.min((y + vh * 0.62) / threadLen, 1) : 0;
     fill.style.transform = 'scaleY(' + tp.toFixed(4) + ')';
     dot.style.transform  = 'translateY(' + (tp * threadLen).toFixed(1) + 'px)';
-    enviar.classList.toggle('thread-done', tp >= 1);
+    const done = tp >= 1;
+    if (done !== threadDone) { enviar.classList.toggle('thread-done', done); threadDone = done; }
   }
 
   function onScroll() {
