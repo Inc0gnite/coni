@@ -267,11 +267,11 @@ if (fx && !reduceMotion) {
 
   /* Destellos con forma (estrellas y flores) que flotan suavemente */
   const glyphs = ['✦', '✧', '❀', '✵']; // ✦ ✧ ❀ ✵
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 14; i++) {
     const g = document.createElement('span');
     g.className = 'sparkle-glyph';
     g.textContent = glyphs[i % glyphs.length];
-    g.style.fontSize          = (10 + Math.random() * 10).toFixed(0) + 'px';
+    g.style.fontSize          = (14 + Math.random() * 12).toFixed(0) + 'px';
     g.style.left              = (Math.random() * 100).toFixed(2) + 'vw';
     g.style.top               = (10 + Math.random() * 84).toFixed(2) + 'vh';
     const dur                 = 9 + Math.random() * 9;
@@ -282,14 +282,33 @@ if (fx && !reduceMotion) {
 }
 
 
-/* ==================== Progreso de scroll + botón flotante de reserva ==================== */
-/* La barra bajo el nav y el anillo del botón flotante avanzan juntos
-   mientras se baja por la página. Al llegar al final, el botón late. */
+/* ==================== Progreso de scroll + hilo dorado + botón flotante ==================== */
+/* Un solo handler de scroll, sincronizado con requestAnimationFrame para no
+   recalcular más de una vez por frame (rendimiento). Mueve:
+   - la barra bajo el nav,
+   - el anillo del botón flotante,
+   - el hilo dorado del fondo, que baja hasta el botón de enviar reserva
+     y lo enciende al alcanzarlo. */
 (function () {
-  const bar  = document.getElementById('scroll-progress');
-  const fab  = document.getElementById('fab-reservar');
-  const ring = fab.querySelector('.fab-ring');
+  const bar    = document.getElementById('scroll-progress');
+  const fab    = document.getElementById('fab-reservar');
+  const ring   = fab.querySelector('.fab-ring');
+  const thread = document.getElementById('scroll-thread');
+  const fill   = thread.querySelector('.thread-fill');
+  const dot    = thread.querySelector('.thread-dot');
+  const enviar = document.getElementById('enviar');
   const RING_LEN = 131.9; // perímetro del círculo r=21
+
+  let threadLen = 0;
+  let ticking   = false;
+
+  /* El hilo termina justo en el botón de enviar reserva */
+  function measure() {
+    const r = enviar.getBoundingClientRect();
+    threadLen = r.top + window.scrollY + r.height / 2;
+    thread.style.height = threadLen + 'px';
+    update();
+  }
 
   function update() {
     const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -298,11 +317,24 @@ if (fx && !reduceMotion) {
     ring.style.strokeDashoffset = (RING_LEN * (1 - p)).toFixed(1);
     fab.classList.toggle('show', window.scrollY > 350);
     fab.classList.toggle('full', p > 0.985);
+
+    /* Hilo: avanza con el punto medio del viewport (solo transform = GPU) */
+    const tp = threadLen > 0 ? Math.min((window.scrollY + window.innerHeight * 0.62) / threadLen, 1) : 0;
+    fill.style.transform = 'scaleY(' + tp.toFixed(4) + ')';
+    dot.style.transform  = 'translateY(' + (tp * threadLen).toFixed(1) + 'px)';
+    enviar.classList.toggle('thread-done', tp >= 1);
   }
 
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-  update();
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { update(); ticking = false; });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+  measure();
 })();
 
 

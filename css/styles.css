@@ -53,12 +53,12 @@ html.light header { background: rgba(251,247,238,0.90); border-color: #D8BC7E; }
 /* Fondo — puntos y glows más visibles sobre crema */
 html.light .bg-grid {
   opacity: 1;
-  background-image: radial-gradient(#A6812A55 1.5px, transparent 1.5px);
+  background-image: radial-gradient(#A6812A77 1.6px, transparent 1.6px);
   background-size: 34px 34px;
 }
-html.light .glow-1 { background: radial-gradient(circle, #C9A24B66, transparent 70%); }
-html.light .glow-2 { background: radial-gradient(circle, #A6812A55, transparent 70%); }
-html.light .glow-3 { background: radial-gradient(circle, #E3C77A66, transparent 70%); }
+html.light .glow-1 { background: radial-gradient(circle, #C9A24B88, transparent 70%); }
+html.light .glow-2 { background: radial-gradient(circle, #A6812A70, transparent 70%); }
+html.light .glow-3 { background: radial-gradient(circle, #E3C77A88, transparent 70%); }
 
 /* Tarjetas y superficies */
 html.light .bg-char,
@@ -124,25 +124,25 @@ html.light .theme-icon-dark  { display: none; }
 /* Contenedor fijo para glows y destellos */
 .bg-fx { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
 
-/* Manchas de luz difusa */
-.glow   { position: absolute; border-radius: 50%; filter: blur(75px); }
+/* Manchas de luz difusa (solo transform animado = barato en GPU) */
+.glow   { position: absolute; border-radius: 50%; filter: blur(70px); will-change: transform; }
 .glow-1 { width: 520px; height: 520px; top: -130px; left: -110px;
-          background: radial-gradient(circle, #C9A24B40, transparent 70%);
+          background: radial-gradient(circle, #C9A24B5e, transparent 70%);
           animation: drift1 22s ease-in-out infinite; }
 .glow-2 { width: 460px; height: 460px; bottom: -150px; right: -130px;
-          background: radial-gradient(circle, #7a5a1f3a, transparent 70%);
+          background: radial-gradient(circle, #7a5a1f55, transparent 70%);
           animation: drift2 27s ease-in-out infinite; }
 .glow-3 { width: 380px; height: 380px; top: 42%; left: 54%;
-          background: radial-gradient(circle, #E3C77A26, transparent 70%);
+          background: radial-gradient(circle, #E3C77A40, transparent 70%);
           animation: drift3 31s ease-in-out infinite; }
 
 @keyframes drift1 { 0%,100% { transform: translate(0,0); }      50% { transform: translate(60px,44px); } }
 @keyframes drift2 { 0%,100% { transform: translate(0,0); }      50% { transform: translate(-54px,-32px); } }
 @keyframes drift3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-44px,30px) scale(1.12); } }
 
-/* Textura de puntos muy sutil */
-.bg-grid { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .6;
-           background-image: radial-gradient(#C9A24B14 1px, transparent 1px);
+/* Textura de puntos */
+.bg-grid { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .9;
+           background-image: radial-gradient(#C9A24B2e 1.3px, transparent 1.3px);
            background-size: 34px 34px; }
 
 /* Destellos flotantes (se generan dinámicamente en js/main.js) */
@@ -157,8 +157,9 @@ html.light .theme-icon-dark  { display: none; }
 
 /* Destellos con forma (estrella ✦ y flor ❀), del rubro belleza */
 .sparkle-glyph { position: absolute; color: #C9A24B; opacity: 0; pointer-events: none;
-                 text-shadow: 0 0 8px #E3C77A88; animation: rise-sway linear infinite; }
-html.light .sparkle-glyph { color: #A6812A; text-shadow: 0 0 8px #C9A24B66; }
+                 will-change: transform, opacity;
+                 text-shadow: 0 0 10px #E3C77A; animation: rise-sway linear infinite; }
+html.light .sparkle-glyph { color: #8F6508; text-shadow: 0 0 10px #C9A24B99; }
 @keyframes rise-sway {
   0%   { transform: translate(0, 24px) rotate(0deg)   scale(.6); opacity: 0; }
   15%  { opacity: .85; }
@@ -242,13 +243,40 @@ html.light #fab-reservar .fab-label { background: #F7F0DF; color: #8F6508; borde
 }
 
 
+/* ==================== Hilo dorado de scroll ==================== */
+/* Línea vertical al centro del fondo que se va "dibujando" al bajar,
+   desde el hero hasta el botón de enviar reserva. Solo anima transform
+   (scaleY / translateY), por lo que corre en GPU sin afectar el layout. */
+#scroll-thread { position: absolute; top: 0; left: 50%; width: 2px; z-index: -1;
+                 transform: translateX(-50%); pointer-events: none; }
+.thread-track { position: absolute; inset: 0;
+                background: linear-gradient(to bottom, transparent, #C9A24B2a 6%, #C9A24B2a 96%, transparent); }
+.thread-fill  { position: absolute; inset: 0; transform-origin: top center; transform: scaleY(0);
+                will-change: transform;
+                background: linear-gradient(to bottom, transparent, #C9A24B 6%, #E3C77A 60%, #fff3d0);
+                box-shadow: 0 0 12px #C9A24B66; }
+.thread-dot   { position: absolute; top: 0; left: 50%; width: 12px; height: 12px;
+                margin-left: -6px; border-radius: 50%; will-change: transform;
+                background: radial-gradient(circle, #fff6dd 20%, #E3C77A 55%, transparent 75%);
+                box-shadow: 0 0 14px 4px #C9A24B99; }
+html.light .thread-track { background: linear-gradient(to bottom, transparent, #A6740A33 6%, #A6740A33 96%, transparent); }
+html.light .thread-fill  { background: linear-gradient(to bottom, transparent, #A6740A 6%, #C9A24B 60%, #E3C77A); }
+
+/* Botón de enviar reserva: se enciende cuando el hilo llega hasta él */
+#enviar.thread-done { animation: btn-glow 1.6s ease-in-out infinite; }
+@keyframes btn-glow {
+  0%, 100% { box-shadow: 0 0 0 0 #C9A24B00; }
+  50%      { box-shadow: 0 0 26px 2px #C9A24Bcc, 0 0 0 6px #C9A24B26; }
+}
+
+
 /* ==================== Figuras decorativas del rubro ==================== */
 /* Glifos dorados grandes (flores y destellos) que adornan cada sección,
    girando muy lento. Marca de agua sutil en oscuro, más presente en claro. */
 .deco { position: absolute; z-index: -1; line-height: 1; color: #C9A24B;
-        pointer-events: none; user-select: none; opacity: .10;
+        pointer-events: none; user-select: none; opacity: .18; will-change: transform;
         animation: deco-spin 60s linear infinite; }
-html.light .deco { opacity: .22; }
+html.light .deco { opacity: .34; }
 @keyframes deco-spin { to { transform: rotate(360deg); } }
 
 .deco-1 { font-size: 11rem; top: 2rem;   right: -2.5rem; }                       /* hero — flor */
@@ -439,7 +467,7 @@ html.light .price-tag {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .glow-1, .glow-2, .glow-3, .gold-rule, .wm-anim, .sparkle, .sparkle-glyph,
-  .deco, .divider-glyph, #scroll-progress, #fab-reservar,
+  .deco, .divider-glyph, #scroll-progress, #fab-reservar, #enviar.thread-done,
   .bg-gold:hover::after { animation: none !important; }
   section h2::after { transition: none; }
   #servicios article, #unas .estimator { transition: none; }
