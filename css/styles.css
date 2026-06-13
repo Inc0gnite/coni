@@ -36,19 +36,19 @@ body  { color: #F4EFE7; font-family: 'Montserrat', sans-serif; position: relativ
 /*
   Paleta crema cálida — sin blancos puros para que los detalles
   del fondo (puntos, glows) sean visibles y armonicen con el dorado.
-  Base:   #F8F1E3  crema luminosa (fondo)
-  Card:   #F2E7D2  crema suave (tarjetas)
-  Input:  #ECDEC4  crema media (inputs)
-  Border: #D9C29A  dorado arena (bordes)
+  Base:   #FBF7EE  blanco crema (fondo)
+  Card:   #F7F0DF  crema clara (tarjetas)
+  Input:  #F2E9D3  crema suave (inputs)
+  Border: #D8BC7E  dorado visible (bordes)
 */
-html.light { background: #F8F1E3; }
+html.light { background: #FBF7EE; }
 
 html.light body { color: #1B1917; }
 
-html.light .hairline { border-color: #D9C29A; }
+html.light .hairline { border-color: #D8BC7E; }
 
 /* Nav */
-html.light header { background: rgba(248,241,227,0.90); border-color: #D9C29A; }
+html.light header { background: rgba(251,247,238,0.90); border-color: #D8BC7E; }
 
 /* Fondo — puntos y glows más visibles sobre crema */
 html.light .bg-grid {
@@ -56,40 +56,40 @@ html.light .bg-grid {
   background-image: radial-gradient(#A6812A55 1.5px, transparent 1.5px);
   background-size: 34px 34px;
 }
-html.light .glow-1 { background: radial-gradient(circle, #C9A24B55, transparent 70%); }
-html.light .glow-2 { background: radial-gradient(circle, #A6812A44, transparent 70%); }
-html.light .glow-3 { background: radial-gradient(circle, #E3C77A44, transparent 70%); }
+html.light .glow-1 { background: radial-gradient(circle, #C9A24B66, transparent 70%); }
+html.light .glow-2 { background: radial-gradient(circle, #A6812A55, transparent 70%); }
+html.light .glow-3 { background: radial-gradient(circle, #E3C77A66, transparent 70%); }
 
 /* Tarjetas y superficies */
 html.light .bg-char,
-html.light [class*="bg-char"] { background-color: #F2E7D2 !important; }
+html.light [class*="bg-char"] { background-color: #F7F0DF !important; }
 html.light .bg-ink,
-html.light [class*="bg-ink"]  { background-color: #ECDEC4 !important; }
+html.light [class*="bg-ink"]  { background-color: #F2E9D3 !important; }
 
 /* Textos */
 html.light .text-cream  { color: #1B1917; }
 html.light .text-warm   { color: #5C4A35; }
-html.light .text-gold   { color: #8A6820; }
-html.light .text-goldlt { color: #6E5218; }
+html.light .text-gold   { color: #A6740A; }
+html.light .text-goldlt { color: #8F6508; }
 
 /* Inputs y selects */
 html.light input,
 html.light select,
 html.light textarea {
-  background-color: #ECDEC4 !important;
+  background-color: #F2E9D3 !important;
   color: #1B1917 !important;
-  border-color: #D9C29A !important;
+  border-color: #D8BC7E !important;
 }
 html.light input::placeholder,
 html.light textarea::placeholder { color: #8C7355; }
 
 /* Footer */
-html.light footer { border-color: #D9C29A; }
+html.light footer { border-color: #D8BC7E; }
 
 /* Tira de uñas — fade lateral sobre crema */
 html.light .strip-wrap {
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #F8F1E3 8%, #F8F1E3 92%, transparent 100%);
-          mask-image: linear-gradient(to right, transparent 0%, #F8F1E3 8%, #F8F1E3 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #FBF7EE 8%, #FBF7EE 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #FBF7EE 8%, #FBF7EE 92%, transparent 100%);
 }
 
 /* Botón toggle */
@@ -232,7 +232,7 @@ html.light #fab-reservar .fab-ring { stroke: #8A6820; }
 }
 #fab-reservar:hover .fab-label,
 #fab-reservar.full .fab-label { opacity: 1; transform: translateY(-50%); }
-html.light #fab-reservar .fab-label { background: #F2E7D2; color: #8A6820; border-color: #D9C29A; }
+html.light #fab-reservar .fab-label { background: #F7F0DF; color: #8F6508; border-color: #D8BC7E; }
 
 /* Cuando el anillo se completa (final de página), el botón late invitando a reservar */
 #fab-reservar.full { animation: fab-pulse 1.8s ease-in-out infinite; }
@@ -240,6 +240,29 @@ html.light #fab-reservar .fab-label { background: #F2E7D2; color: #8A6820; borde
   0%, 100% { box-shadow: 0 8px 28px -8px #C9A24Baa; }
   50%      { box-shadow: 0 8px 34px -4px #C9A24B, 0 0 0 8px #C9A24B22; }
 }
+
+
+/* ==================== Figuras decorativas del rubro ==================== */
+/* Glifos dorados grandes (flores y destellos) que adornan cada sección,
+   girando muy lento. Marca de agua sutil en oscuro, más presente en claro. */
+.deco { position: absolute; z-index: -1; line-height: 1; color: #C9A24B;
+        pointer-events: none; user-select: none; opacity: .10;
+        animation: deco-spin 60s linear infinite; }
+html.light .deco { opacity: .22; }
+@keyframes deco-spin { to { transform: rotate(360deg); } }
+
+.deco-1 { font-size: 11rem; top: 2rem;   right: -2.5rem; }                       /* hero — flor */
+.deco-2 { font-size: 8rem;  top: 4rem;   right: 0;      animation-direction: reverse; } /* pestañas — destello */
+.deco-3 { font-size: 9rem;  bottom: 1rem; left: -2rem; }                          /* uñas — flor */
+.deco-4 { font-size: 7rem;  top: 3rem;   right: 1rem;   animation-direction: reverse; } /* políticas — destello */
+.deco-5 { font-size: 8rem;  bottom: 2rem; right: -2rem; }                         /* reservar — flor */
+
+/* Separadores: línea dorada con flor giratoria al centro */
+.divider { display: flex; align-items: center; gap: .9rem; max-width: 28rem; margin: 0 auto; }
+.divider .gold-rule { flex: 1; }
+.divider-glyph { color: #C9A24B; font-size: 1.1rem; line-height: 1;
+                 text-shadow: 0 0 10px #E3C77A; animation: deco-spin 14s linear infinite; }
+html.light .divider-glyph { color: #A6740A; text-shadow: 0 0 10px #C9A24B88; }
 
 
 /* ==================== 4. Micro-interacciones ==================== */
@@ -416,7 +439,7 @@ html.light .price-tag {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .glow-1, .glow-2, .glow-3, .gold-rule, .wm-anim, .sparkle, .sparkle-glyph,
-  #scroll-progress, #fab-reservar,
+  .deco, .divider-glyph, #scroll-progress, #fab-reservar,
   .bg-gold:hover::after { animation: none !important; }
   section h2::after { transition: none; }
   #servicios article, #unas .estimator { transition: none; }
