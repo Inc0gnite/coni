@@ -273,17 +273,20 @@ html.light #fab-reservar .fab-label { background: #F7F0DF; color: #8F6508; borde
    (scaleY / translateY), por lo que corre en GPU sin afectar el layout. */
 #scroll-thread { position: absolute; top: 0; left: 50%; width: 2px; z-index: -1;
                  transform: translateX(-50%); pointer-events: none; }
-.thread-track { position: absolute; inset: 0;
-                background: linear-gradient(to bottom, transparent, #C9A24B2a 6%, #C9A24B2a 96%, transparent); }
+/* La línea va atenuada (opacity en track/fill) para no competir con el texto
+   que cruza por el centro; el punto luminoso queda a brillo completo. */
+.thread-track { position: absolute; inset: 0; opacity: .5;
+                background: linear-gradient(to bottom, transparent, #C9A24B22 6%, #C9A24B22 96%, transparent); }
 .thread-fill  { position: absolute; inset: 0; transform-origin: top center; transform: scaleY(0);
-                will-change: transform;
+                will-change: transform; opacity: .35;
                 background: linear-gradient(to bottom, transparent, #C9A24B 6%, #E3C77A 60%, #fff3d0); }
 .thread-dot   { position: absolute; top: 0; left: 50%; width: 12px; height: 12px;
                 margin-left: -6px; border-radius: 50%; will-change: transform;
                 background: radial-gradient(circle, #fff6dd 20%, #E3C77A 55%, transparent 75%);
                 box-shadow: 0 0 14px 4px #C9A24B99; }
-html.light .thread-track { background: linear-gradient(to bottom, transparent, #A6740A33 6%, #A6740A33 96%, transparent); }
-html.light .thread-fill  { background: linear-gradient(to bottom, transparent, #A6740A 6%, #C9A24B 60%, #E3C77A); }
+html.light .thread-track { background: linear-gradient(to bottom, transparent, #A6740A2a 6%, #A6740A2a 96%, transparent); }
+html.light .thread-fill  { opacity: .30;
+                           background: linear-gradient(to bottom, transparent, #A6740A 6%, #C9A24B 60%, #E3C77A); }
 
 /* Botón de enviar reserva: se enciende cuando el hilo llega hasta él */
 #enviar.thread-done { animation: btn-glow 1.6s ease-in-out infinite; }
