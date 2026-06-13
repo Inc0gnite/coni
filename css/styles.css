@@ -194,11 +194,12 @@ html.light .sparkle-glyph { color: #8F6508; text-shadow: 0 0 10px #C9A24B99; }
              background: linear-gradient(90deg, transparent 0%, #C9A24B 38%, #fff6dd 50%, #C9A24B 62%, transparent 100%); }
 @keyframes sweep { 0% { background-position: 130% 0; } 100% { background-position: -130% 0; } }
 
-/* Degradado animado para el acento en cursiva del título del hero */
-.wm-anim { background: linear-gradient(90deg, #C9A24B, #E3C77A, #fff3d0, #E3C77A, #C9A24B);
-           background-size: 220% auto; -webkit-background-clip: text; background-clip: text;
-           color: transparent; animation: wmflow 8s linear infinite; }
-@keyframes wmflow { to { background-position: 220% center; } }
+/* Acento en cursiva del título del hero: degradado dorado fijo
+   (sin franja clara ni animación: legible siempre y cero repaint) */
+.wm-anim { background: linear-gradient(105deg, #E8CB85, #C9A24B 55%, #A6812A);
+           -webkit-background-clip: text; background-clip: text; color: transparent; }
+html.light .wm-anim { background: linear-gradient(105deg, #B8860B, #8F6508 60%, #6E4F06);
+                      -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 
 /* Pincelada dorada que se dibuja bajo los títulos al aparecer (como trazo de esmalte) */
@@ -462,21 +463,17 @@ select:focus-visible, textarea:focus-visible {
   font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  background: linear-gradient(90deg, #C9A24B, #F0D080, #fff8e1, #E3C77A, #C9A24B);
-  background-size: 250% auto;
+  background: linear-gradient(105deg, #EFD491, #C9A24B 55%, #A6812A);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: wmflow 6s linear infinite;
 }
 
 html.light .price-tag {
-  background: linear-gradient(90deg, #8A6820, #C9A24B, #A6812A, #8A6820);
-  background-size: 250% auto;
+  background: linear-gradient(105deg, #B8860B, #8F6508 60%, #6E4F06);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: wmflow 6s linear infinite;
 }
 
 /* Apaga todas las animaciones para quienes prefieren menos movimiento */
